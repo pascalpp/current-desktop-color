@@ -1,10 +1,36 @@
 # Testing NSWorkspace.shared.desktopImageOptions fillColor
 
-In the Wallpaper preference pane in Mac OS Settings, you can set a desktop image and fill color.
+This is a small CLI app written in Swift to test a possible bug in the `NSWorkspace.shared.desktopImageOptions` API in Mac OS. It just reads some settings and prints them to the console.
+
+To run this app:
+
+First, set your desktop image to "Fit to Screen" or "Center" in the Wallpaper preference pane in Mac OS Settings. Choose a color from the color well that appears.
 
 <img width="491" alt="image" src="https://github.com/pascalpp/current-desktop-color/assets/1355312/428674e0-b41e-4fb9-98be-41e5d20d6d38">
 
-I'm trying to set the these programmatically, using the `setDesktopImageURL` method on NSWorkspace.shared. Sample code:
+Then clone the repo and build the app and run it:
+
+```
+gh repo clone pascalpp/current-desktop-color
+cd current-desktop-color
+swift build
+swift run
+```
+
+If the build succeeds, the app will print the current desktop scaling option (a number from 0 to 3), and the current fill color.
+
+```
+imageScaling Optional(3)
+fillColor: nil
+```
+
+For me, the fillColor is always nil, and I think that's a bug. If you get something besides nil, I'd love to hear about it!
+
+# But why?
+
+I'm trying to set the desktop color programmatically, using the `setDesktopImageURL` method on NSWorkspace.shared. The plan is to allow the user to assign colors to spaces and easily differentiate one space from another, and to set the background color of the menubar to black or some other color, using transparent desktop images with the fill color showing through. (I've explored other methods of coloring the menu bar but haven't found one that works the way I want.)
+
+Some sample code:
 
 ```
 import Foundation
