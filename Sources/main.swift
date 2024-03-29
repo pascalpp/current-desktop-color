@@ -4,5 +4,7 @@
 import Foundation
 import AppKit
 
-let cur = NSWorkspace.shared.desktopImageOptions(for: NSScreen.main!)!
-print(cur[.fillColor])
+let options = NSWorkspace.shared.desktopImageOptions(for: NSScreen.main!)!
+
+print("imageScaling:", options[.imageScaling])
+print("fillColor:", options[.fillColor])
