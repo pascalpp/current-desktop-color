@@ -1,8 +1,8 @@
-# Testing NSWorkspace.shared.desktopImageOptions fillColor
+# Get the current desktop fill color
 
-This is a small CLI app written in Swift to test a possible bug in the `NSWorkspace.shared.desktopImageOptions` API in Mac OS. It just reads some settings and prints them to the console.
+This is a small CLI app written in Swift to test the `NSWorkspace.shared.desktopImageOptions` API in Mac OS. It just reads some settings and prints them to the console.
 
-To run this app:
+### To run this app:
 
 First, set your desktop image to "Fit to Screen" or "Center" in the Wallpaper preference pane in Mac OS Settings. Choose a color from the color well that appears.
 
@@ -26,7 +26,7 @@ fillColor: nil
 
 For me, the fillColor is always nil, and I think that's a bug. If you get something besides nil, I'd love to hear about it!
 
-# But why?
+## But why?
 
 I'd like to make an app that allows the user to assign colors to spaces and easily differentiate one space from another, and to set the background color of the menubar to black or some other color, using transparent desktop images with the fill color showing through. (I've explored other methods of coloring the menu bar but haven't found one that works the way I want.)
 
