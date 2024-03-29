@@ -28,7 +28,9 @@ For me, the fillColor is always nil, and I think that's a bug. If you get someth
 
 # But why?
 
-I'm trying to set the desktop color programmatically, using the `setDesktopImageURL` method on NSWorkspace.shared. The plan is to allow the user to assign colors to spaces and easily differentiate one space from another, and to set the background color of the menubar to black or some other color, using transparent desktop images with the fill color showing through. (I've explored other methods of coloring the menu bar but haven't found one that works the way I want.)
+I'd like to make an app that allows the user to assign colors to spaces and easily differentiate one space from another, and to set the background color of the menubar to black or some other color, using transparent desktop images with the fill color showing through. (I've explored other methods of coloring the menu bar but haven't found one that works the way I want.)
+
+So I'm trying to set the desktop image and color programmatically, using the `setDesktopImageURL` method on NSWorkspace.shared.
 
 Some sample code:
 
