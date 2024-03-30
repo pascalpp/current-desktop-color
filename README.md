@@ -4,14 +4,14 @@ If you have a Mac with git and Xcode installed and would like to help troublesho
 
 ## To run this app:
 
-First, open Settings:
+First, open Settings (or System Preferences):
 
-- Go to the Wallpaper pane (might be called Desktop & Screen Saver)
+- Go to the Wallpaper pane (or Desktop & Screen Saver)
 - Set the desktop picture to any image you have handy
 - Set the scale mode to "Fit to Screen"
 - Choose a fill color by clicking on the color well that appears
 
-<img width="491" alt="image" src="https://github.com/pascalpp/current-desktop-color/assets/1355312/428674e0-b41e-4fb9-98be-41e5d20d6d38" style="margin-block: 1rem">
+![Wallpaper Settings Pane](./images/wallpaper.png)
 
 Then, open Terminal and run these commands:
 
@@ -35,25 +35,39 @@ One of the options for that method is `fillColor`, which is supposed to set the 
 
 The related method `NSWorkspace.shared.desktopImageOptions` is supposed to return the current desktop image options, including the fill color, but this no longer works either.
 
-I've tested this on three machines.
+I've tested this on Monterey, Ventura, and Sonoma. I've also had a few Sonoma reports come in, all with the same results as I got for Sonoma.
 
-- On my Macbook Pro 2018 (Intel) running macOS Monterey, I'm able to set and get the fill color correctly. When I run the test app, I get:
+### Monterey
 
 ```
 macOS version: 12.4.0
-imageScaling: nil
-fillColor: Optional(NSCalibratedRGBColorSpace 0.196805 0.384201) <-- good
+imageScaling: Optional(3)
+fillColor: Optional(NSCalibratedRGBColorSpace ...) <-- good
 ```
 
-- But on two different 14" Macbook Pros (an M1 Pro and an M3 Pro), both running macOS Sonoma, the fill color option is ignored when I try to set it, and when I run the test app I get:
+### Ventura
 
 ```
-macOS version: 14.4.1
+macOS version: 13.6.0 (Ventura)
+imageScaling: Optional(3)
+fillColor: Optional(NSCalibratedRGBColorSpace ...) <-- good
+```
+
+### Sonoma
+
+```
+macOS version: 14.4.1 (Sonoma)
 imageScaling: Optional(3)
 fillColor: nil <-- bad
 ```
 
-On both of those Apple Silicon machines, the fillColor is always nil, and I think that's a bug. This might be a regression in macOS Ventura or Sonoma, but I need more folks to run this test to be sure.
+So this looks like a regression in Sonoma.
+
+## Keyboard Maestro
+
+I also tested this in the popular macro utility [Keyboard Maestro](https://www.keyboardmaestro.com), which has a `Set Desktop Image` action that allows you to set the desktop image, scaling method, and fill color. This action also works in Monterey, but not in Sonoma. (This action likely uses the same `NSWorkspace.shared.setDesktopImageURL` API method.)
+
+![Keyboard Maestro](images/keyboard-maestro.png)
 
 ## Why I'm trying to solve this problem
 
