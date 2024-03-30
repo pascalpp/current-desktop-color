@@ -89,4 +89,4 @@ try workspace.setDesktopImageURL(image, for: screen, options: options)
 
 ```
 
-This works in Montery, but in Sonoma `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets the fill color to some default blue (even if I have set it to some other color manually.)
+This works in Monterey, but in Sonoma `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets the fill color to some default blue (even if I have set it to some other color manually.)
