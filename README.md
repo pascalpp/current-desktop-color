@@ -77,37 +77,28 @@ So I'm trying to set the desktop image and color programmatically, using the `se
 
 Some sample code:
 
-```
-
+```swift
 import Foundation
 import AppKit
 
 let workspace = NSWorkspace.shared
 let screens = NSScreen.screens
 
-// scaling options for desktop pictures
-let fill = NSImageScaling.scaleProportionallyDown.rawValue
-let stretch = NSImageScaling.scaleAxesIndependently.rawValue
-let center = NSImageScaling.scaleNone.rawValue
-let fit = NSImageScaling.scaleProportionallyUpOrDown.rawValue
+let image = NSURL.fileURL(withPath: "/path/to/some/wallpaper.png")
 
-// I have two screens, so I have these two background images in my home folder:
-let large = NSURL.fileURL(withPath: "/Users/pascal/Pictures/Wallpaper/large.png")
-let small = NSURL.fileURL(withPath: "/Users/pascal/Pictures/Wallpaper/small.png")
-
-for screen in screens {
-// choose the image for the given screen size - room for improvement here, ignore this
-let image = (screen.frame.width == 2560) ? large : small
-
-// the color I'd like to use
+// A nice blue green. This will show through any transparent areas of the image
 let color = NSColor(calibratedRed: 64/255, green: 116/255, blue: 112/255, alpha: 1.0)
+
+// NSImageScaling options https://developer.apple.com/documentation/appkit/nsimagescaling
+let fit = NSImageScaling.scaleProportionallyUpOrDown.rawValue
 
 var options: [NSWorkspace.DesktopImageOptionKey : Any] = [:]
 options[.imageScaling] = fit
 options[.fillColor] = color
 
-try workspace.setDesktopImageURL(image, for: screen, options: options)
-
+for screen in screens {
+  try workspace.setDesktopImageURL(image, for: screen, options: options)
+}
 ```
 
-This works in Monterey, but in Sonoma `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets the fill color to some default blue (even if I have set it to some other color manually.)
+This works in Monterey and Ventura, but in Sonoma `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets the fill color to some default blue (even if I have previously set it to some other color manually.)
