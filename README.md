@@ -8,7 +8,7 @@ This is a small CLI app written in Swift to test the `NSWorkspace.shared.desktop
 
 ### To run this app:
 
-First, set your desktop image to "Fit to Screen" or "Center" in the Wallpaper preference pane in Mac OS Settings. Choose a color from the color well that appears.
+First, set your desktop image to "Fit to Screen" or "Center" in the Wallpaper preference pane in Mac OS Settings. A color well should appear, showing the current fill color.
 
 <img width="491" alt="image" src="https://github.com/pascalpp/current-desktop-color/assets/1355312/428674e0-b41e-4fb9-98be-41e5d20d6d38">
 
