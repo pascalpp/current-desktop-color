@@ -42,6 +42,7 @@ I've tested this on Monterey, Ventura, and Sonoma. I've also had a few Sonoma re
 ```
 macOS version: 12.4.0
 imageScaling: Optional(3)
+allowClipping: Optional(0)
 fillColor: Optional(NSCalibratedRGBColorSpace ...) <-- good
 ```
 
@@ -50,6 +51,7 @@ fillColor: Optional(NSCalibratedRGBColorSpace ...) <-- good
 ```
 macOS version: 13.6.0 (Ventura)
 imageScaling: Optional(3)
+allowClipping: Optional(0)
 fillColor: Optional(NSCalibratedRGBColorSpace ...) <-- good
 ```
 
@@ -58,6 +60,7 @@ fillColor: Optional(NSCalibratedRGBColorSpace ...) <-- good
 ```
 macOS version: 14.4.1 (Sonoma)
 imageScaling: Optional(3)
+allowClipping: Optional(0)
 fillColor: nil <-- bad
 ```
 
@@ -94,6 +97,7 @@ let fit = NSImageScaling.scaleProportionallyUpOrDown.rawValue
 
 let options: [NSWorkspace.DesktopImageOptionKey : Any] = [
   .imageScaling: fit,
+  .allowClipping: false,
   .fillColor: color,
 ]
 
