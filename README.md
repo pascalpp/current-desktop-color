@@ -65,7 +65,7 @@ So this looks like a regression in Sonoma.
 
 ## Keyboard Maestro
 
-I also tested this in the popular macro utility [Keyboard Maestro](https://www.keyboardmaestro.com), which has a `Set Desktop Image` action that allows you to set the desktop image, scaling method, and fill color. This action also works in Monterey, but not in Sonoma. (This action likely uses the same `NSWorkspace.shared.setDesktopImageURL` API method.)
+I also tested this in the popular macro utility [Keyboard Maestro](https://www.keyboardmaestro.com), which has a `Set Desktop Image` action that allows you to set the desktop image, scaling method, and fill color, likely using the same `NSWorkspace.shared.setDesktopImageURL` API method. Keyboard Maestro is able to set the fill color in Monterey, but not in Sonoma.
 
 ![Keyboard Maestro](images/keyboard-maestro.png)
 
