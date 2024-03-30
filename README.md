@@ -1,10 +1,19 @@
 # Help wanted
 
-If you have a Mac with `gh` and Xcode installed and would like to help troubleshoot an API issue I'm having, read on.
+If you have a Mac with git and Xcode installed and would like to help troubleshoot an API issue I'm having, read on.
 
-# Get the current desktop fill color
+## The problem
 
-This is a small CLI app written in Swift to test the `NSWorkspace.shared.desktopImageOptions` API in Mac OS. It just reads some settings and prints them to the console.
+- I'm trying to set the desktop image and fill color programmatically in Mac OS using the `NSWorkspace.shared.setDesktopImageURL` method.
+- One of the options for that method is `fillColor`, which is supposed to set the color that shows through transparent desktop images. But it doesn't seem to work.
+- The related method `NSWorkspace.shared.desktopImageOptions` is supposed to return the current desktop image options, including the fill color, but it doesn't seem to work either.
+
+I've tested this on three machines.
+
+- One machine, running macOS Monterey on Intel, is able to set and get the fill color correctly.
+- Two other machines, running macOS Sonoma on Apple Silicon, ignore the fill color option when I try to set it, and they return nil when I try to get it.
+
+So I've created a small CLI app written in Swift to test read `NSWorkspace.shared.desktopImageOptions` and print some info to the console.
 
 ### To run this app:
 
@@ -28,7 +37,7 @@ On my Macbook Pro 2018 (Intel) running macOS Monterey, I get:
 ```
 macOS version: 12.4.0
 imageScaling: nil
-fillColor: Optional(NSCalibratedRGBColorSpace 0.196805 0.384201)
+fillColor: Optional(NSCalibratedRGBColorSpace 0.196805 0.384201) <-- good
 ```
 
 But on two different 14" Macbook Pros (an M1 Pro and an M3 Pro), both running macOS Sonoma, I get:
@@ -36,14 +45,13 @@ But on two different 14" Macbook Pros (an M1 Pro and an M3 Pro), both running ma
 ```
 macOS version: 14.4.1
 imageScaling: Optional(3)
-fillColor: nil
+fillColor: nil <-- bad
 ```
 
-On both of those Apple Silicon machines, the fillColor is always nil, and I think that's a bug. This might be a regression in macOS Ventura or Sonoma.
+On both of those Apple Silicon machines, the fillColor is always nil, and I think that's a bug. This might be a regression in macOS Ventura or Sonoma, but I need more folks to run this test to be sure. If you get something besides nil, I'd love to hear about it!
 
-If you get something besides nil, I'd love to hear about it!
-
-## But why?
+<details>
+<summary>More background on why I'm trying to solve this problem</summary>
 
 I'd like to make an app that allows the user to assign colors to spaces and easily differentiate one space from another, and to set the background color of the menubar to black or some other color, using transparent desktop images with the fill color showing through. (I've explored other methods of coloring the menu bar but haven't found one that works the way I want.)
 
@@ -81,7 +89,6 @@ options[.imageScaling] = fit
 options[.fillColor] = color
 
 try workspace.setDesktopImageURL(image, for: screen, options: options)
-}
 
 ```
 
@@ -89,6 +96,4 @@ But `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets
 
 So I've created this little test app which attempts to get the current fill color, which is supposedly available in the options returned by the `NSWorkspace.shared.desktopImageOptions`.
 
-```
-
-```
+</details>
