@@ -1,21 +1,8 @@
 # Help wanted
 
-If you have a Mac with git and Xcode installed and would like to help troubleshoot an API issue I'm having, read on.
+If you have a Mac with git and Xcode installed and would like to help troubleshoot an API issue I'm having, please download and run this little test app and email me the output.
 
-## The problem
-
-- I'm trying to set the desktop image and fill color programmatically in macOS using the `NSWorkspace.shared.setDesktopImageURL` method.
-- One of the options for that method is `fillColor`, which is supposed to set the color that shows through transparent desktop images. This used to work, but no longer does.
-- The related method `NSWorkspace.shared.desktopImageOptions` is supposed to return the current desktop image options, including the fill color, but this no longer works either.
-
-I've tested this on three machines.
-
-- One machine, running macOS Monterey on Intel, is able to set and get the fill color correctly.
-- Two other machines, running macOS Sonoma on Apple Silicon, ignore the fill color option when I try to set it, and they return nil when I try to get it.
-
-So I've created a small CLI app written in Swift to test read `NSWorkspace.shared.desktopImageOptions` and print some info to the console.
-
-### To run this app:
+## To run this app:
 
 First, set your desktop image to "Fit to Screen" or "Center" in the Wallpaper preference pane in Mac OS Settings. A color well should appear, showing the current fill color.
 
@@ -26,11 +13,27 @@ Then clone the repo and build the app and run it:
 ```
 gh repo clone pascalpp/current-desktop-color
 cd current-desktop-color
-swift build
 swift run
 ```
 
-If the build succeeds, the app will print the current desktop scaling option (a number from 0 to 3), and the current fill color.
+If the build succeeds, the app will print the current OS version, the current desktop scaling option (a number from 0 to 3), and the current fill color. Please email the output to pascalpp+fillcolor@gmail.com.
+
+Keep scrolling if you're curious to know more.
+
+<div style="height:200px"></div>
+
+## The problem I'm trying to solve:
+
+- I'm trying to set the desktop image and fill color programmatically in macOS using the `NSWorkspace.shared.setDesktopImageURL` method.
+- One of the options for that method is `fillColor`, which is supposed to set the color that shows through transparent desktop images. This used to work, but no longer does.
+- The related method `NSWorkspace.shared.desktopImageOptions` is supposed to return the current desktop image options, including the fill color, but this no longer works either.
+
+I've tested this on three machines.
+
+- One machine, running macOS Monterey on Intel, is able to set and get the fill color correctly.
+- Two other machines, running macOS Sonoma on Apple Silicon, ignore the fill color option when I try to set it, and they return nil when I try to get it.
+
+So I've created this small CLI app written in Swift to test read `NSWorkspace.shared.desktopImageOptions` and print some info to the console.
 
 On my Macbook Pro 2018 (Intel) running macOS Monterey, I get:
 
@@ -50,8 +53,7 @@ fillColor: nil <-- bad
 
 On both of those Apple Silicon machines, the fillColor is always nil, and I think that's a bug. This might be a regression in macOS Ventura or Sonoma, but I need more folks to run this test to be sure. If you get something besides nil, I'd love to hear about it!
 
-<details>
-<summary>More background on why I'm trying to solve this problem</summary>
+## Why I'm trying to solve this problem
 
 I'd like to make an app that allows the user to assign colors to spaces and easily differentiate one space from another, and to set the background color of the menubar to black or some other color, using transparent desktop images with the fill color showing through. (I've explored other methods of coloring the menu bar but haven't found one that works the way I want.)
 
@@ -95,5 +97,3 @@ try workspace.setDesktopImageURL(image, for: screen, options: options)
 But `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets the fill color to some default blue.
 
 So I've created this little test app which attempts to get the current fill color, which is supposedly available in the options returned by the `NSWorkspace.shared.desktopImageOptions`.
-
-</details>
