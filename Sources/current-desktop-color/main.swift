@@ -2,7 +2,8 @@ import AppKit
 import Foundation
 
 let version = ProcessInfo.processInfo.operatingSystemVersion
-let options = NSWorkspace.shared.desktopImageOptions(for: NSScreen.main!)!
+let screen = NSScreen.main!
+let options = NSWorkspace.shared.desktopImageOptions(for: screen)!
 
 print("")
 print("Thanks! Please email the info below to pascalpp+fillcolor@gmail.com")
