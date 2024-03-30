@@ -4,6 +4,8 @@ If you have a Mac with git and Xcode installed and would like to help troublesho
 
 ## To run this app:
 
+In Terminal:
+
 ```
 gh repo clone pascalpp/current-desktop-color
 cd current-desktop-color
