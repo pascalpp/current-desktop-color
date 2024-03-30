@@ -4,9 +4,9 @@ If you have a Mac with git and Xcode installed and would like to help troublesho
 
 ## The problem
 
-- I'm trying to set the desktop image and fill color programmatically in Mac OS using the `NSWorkspace.shared.setDesktopImageURL` method.
-- One of the options for that method is `fillColor`, which is supposed to set the color that shows through transparent desktop images. But it doesn't seem to work.
-- The related method `NSWorkspace.shared.desktopImageOptions` is supposed to return the current desktop image options, including the fill color, but it doesn't seem to work either.
+- I'm trying to set the desktop image and fill color programmatically in macOS using the `NSWorkspace.shared.setDesktopImageURL` method.
+- One of the options for that method is `fillColor`, which is supposed to set the color that shows through transparent desktop images. This used to work, but no longer does.
+- The related method `NSWorkspace.shared.desktopImageOptions` is supposed to return the current desktop image options, including the fill color, but this no longer works either.
 
 I've tested this on three machines.
 
