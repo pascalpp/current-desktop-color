@@ -1,3 +1,7 @@
+# Help wanted
+
+If you have a Mac with `gh` and Xcode installed and would like to help troubleshoot an API issue I'm having, read on.
+
 # Get the current desktop fill color
 
 This is a small CLI app written in Swift to test the `NSWorkspace.shared.desktopImageOptions` API in Mac OS. It just reads some settings and prints them to the console.
