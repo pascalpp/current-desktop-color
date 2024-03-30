@@ -8,6 +8,5 @@ print("")
 print("Thanks! Please email the info below to pascalpp+fillcolor@gmail.com")
 print("")
 print("macOS version:", "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)")
-print("imageScaling:", options[.imageScaling])
-print("fillColor:", options[.fillColor])
-
+print("imageScaling:", options[.imageScaling] as Any)
+print("fillColor:", options[.fillColor] as Any)
