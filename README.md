@@ -4,12 +4,6 @@ If you have a Mac with git and Xcode installed and would like to help troublesho
 
 ## To run this app:
 
-First, set your desktop image to "Fit to Screen" or "Center" in the Wallpaper preference pane in Mac OS Settings. A color well should appear, showing the current fill color.
-
-<img width="491" alt="image" src="https://github.com/pascalpp/current-desktop-color/assets/1355312/428674e0-b41e-4fb9-98be-41e5d20d6d38">
-
-Then clone the repo and build the app and run it:
-
 ```
 gh repo clone pascalpp/current-desktop-color
 cd current-desktop-color
@@ -23,6 +17,8 @@ Keep scrolling if you're curious to know more.
 <div style="height:200px"></div>
 
 ## The problem I'm trying to solve:
+
+<img width="491" alt="image" src="https://github.com/pascalpp/current-desktop-color/assets/1355312/428674e0-b41e-4fb9-98be-41e5d20d6d38">
 
 - I'm trying to set the desktop image and fill color programmatically in macOS using the `NSWorkspace.shared.setDesktopImageURL` method.
 - One of the options for that method is `fillColor`, which is supposed to set the color that shows through transparent desktop images. This used to work, but no longer does.
