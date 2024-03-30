@@ -1,5 +1,5 @@
-import Foundation
 import AppKit
+import Foundation
 
 let version = ProcessInfo.processInfo.operatingSystemVersion
 let options = NSWorkspace.shared.desktopImageOptions(for: NSScreen.main!)!
@@ -9,4 +9,5 @@ print("Thanks! Please email the info below to pascalpp+fillcolor@gmail.com")
 print("")
 print("macOS version:", "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)")
 print("imageScaling:", options[.imageScaling] as Any)
+print("allowClipping:", options[.allowClipping] as Any)
 print("fillColor:", options[.fillColor] as Any)
