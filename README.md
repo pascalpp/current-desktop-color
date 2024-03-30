@@ -23,24 +23,25 @@ swift run
 
 If the build succeeds, the app will print the current desktop scaling option (a number from 0 to 3), and the current fill color.
 
-On my Macbook Pro 2018 (Intel) running macOS Monterey (12.4), I get:
+On my Macbook Pro 2018 (Intel) running macOS Monterey, I get:
 
 ```
+macOS version: 12.4.0
+imageScaling: nil
+fillColor: Optional(NSCalibratedRGBColorSpace 0.196805 0.384201)
+```
+
+But on two different 14" Macbook Pros (an M1 Pro and an M3 Pro), both running macOS Sonoma, I get:
+
+```
+macOS version: 14.4.1
 imageScaling: Optional(3)
-fillColor: Optional(NSCalibratedRGBColorSpace 0.196805 0.384201 0.360662 1)
-```
-
-But on two different 14" Macbook Pros (an M1 Pro and an M3 Pro), both running macOS Sonoma (14.1), I get:
-
-```
-imageScaling Optional(3)
 fillColor: nil
 ```
 
-On both of those machines, the fillColor is always nil, and I think that's a bug. This might be a regression in macOS Ventura or Sonoma.
+On both of those Apple Silicon machines, the fillColor is always nil, and I think that's a bug. This might be a regression in macOS Ventura or Sonoma.
 
-If you get something besides nil, I'd love to hear about it! (Mac model, OS Version, etc.)
-
+If you get something besides nil, I'd love to hear about it!
 
 ## But why?
 
@@ -51,6 +52,7 @@ So I'm trying to set the desktop image and color programmatically, using the `se
 Some sample code:
 
 ```
+
 import Foundation
 import AppKit
 
@@ -68,20 +70,25 @@ let large = NSURL.fileURL(withPath: "/Users/pascal/Pictures/Wallpaper/large.png"
 let small = NSURL.fileURL(withPath: "/Users/pascal/Pictures/Wallpaper/small.png")
 
 for screen in screens {
-  // choose the image for the given screen size - room for improvement here, ignore this
-  let image = (screen.frame.width == 2560) ? large : small
+// choose the image for the given screen size - room for improvement here, ignore this
+let image = (screen.frame.width == 2560) ? large : small
 
-  // the color I'd like to use
-  let color = NSColor(calibratedRed: 64/255, green: 116/255, blue: 112/255, alpha: 1.0)
+// the color I'd like to use
+let color = NSColor(calibratedRed: 64/255, green: 116/255, blue: 112/255, alpha: 1.0)
 
-  var options: [NSWorkspace.DesktopImageOptionKey : Any] = [:]
-  options[.imageScaling] = fit
-  options[.fillColor] = color
+var options: [NSWorkspace.DesktopImageOptionKey : Any] = [:]
+options[.imageScaling] = fit
+options[.fillColor] = color
 
-  try workspace.setDesktopImageURL(image, for: screen, options: options)
+try workspace.setDesktopImageURL(image, for: screen, options: options)
 }
+
 ```
 
 But `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets the fill color to some default blue.
 
 So I've created this little test app which attempts to get the current fill color, which is supposedly available in the options returned by the `NSWorkspace.shared.desktopImageOptions`.
+
+```
+
+```
