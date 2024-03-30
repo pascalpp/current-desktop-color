@@ -14,7 +14,7 @@ If the build succeeds, the app will print the current OS version, the current de
 
 Keep scrolling if you're curious to know more.
 
-<div style="height:200px"></div>
+<table height="150"></table>
 
 ## The problem I'm trying to solve:
 
