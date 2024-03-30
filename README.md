@@ -89,6 +89,4 @@ try workspace.setDesktopImageURL(image, for: screen, options: options)
 
 ```
 
-But `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets the fill color to some default blue.
-
-So I've created this little test app which attempts to get the current fill color, which is supposedly available in the options returned by the `NSWorkspace.shared.desktopImageOptions`.
+This works in Montery, but in Sonoma `setDesktopImageURL` seems to ignore the `fillColor` option, and always sets the fill color to some default blue (even if I have set it to some other color manually.)
