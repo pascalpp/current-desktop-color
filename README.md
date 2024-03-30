@@ -4,7 +4,16 @@ If you have a Mac with git and Xcode installed and would like to help troublesho
 
 ## To run this app:
 
-In Terminal:
+First, open Settings:
+
+- Go to the Wallpaper pane (might be called Desktop & Screen Saver)
+- Set the desktop picture to any image you have handy
+- Set the scale mode to "Fit to Screen"
+- Choose a fill color by clicking on the color well that appears
+
+<img width="491" alt="image" src="https://github.com/pascalpp/current-desktop-color/assets/1355312/428674e0-b41e-4fb9-98be-41e5d20d6d38" style="margin-block: 1rem">
+
+Then, open Terminal and run these commands:
 
 ```
 gh repo clone pascalpp/current-desktop-color
@@ -19,8 +28,6 @@ Keep scrolling if you're curious to know more.
 <table height="150"></table>
 
 ## The problem I'm trying to solve:
-
-<img width="491" alt="image" src="https://github.com/pascalpp/current-desktop-color/assets/1355312/428674e0-b41e-4fb9-98be-41e5d20d6d38" style="margin-block: 1rem">
 
 I'm trying to set the desktop image and fill color programmatically in macOS using the `NSWorkspace.shared.setDesktopImageURL` method.
 
