@@ -92,9 +92,10 @@ let color = NSColor(calibratedRed: 64/255, green: 116/255, blue: 112/255, alpha:
 // NSImageScaling options https://developer.apple.com/documentation/appkit/nsimagescaling
 let fit = NSImageScaling.scaleProportionallyUpOrDown.rawValue
 
-var options: [NSWorkspace.DesktopImageOptionKey : Any] = [:]
-options[.imageScaling] = fit
-options[.fillColor] = color
+let options: [NSWorkspace.DesktopImageOptionKey : Any] = [
+  .imageScaling: fit,
+  .fillColor: color,
+]
 
 for screen in screens {
   try workspace.setDesktopImageURL(image, for: screen, options: options)
