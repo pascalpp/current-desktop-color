@@ -21,7 +21,7 @@ cd current-desktop-color
 swift run
 ```
 
-If the build succeeds, the app will print the current OS version, the current desktop scaling option (a number from 0 to 3), the image clipping setting, and the current fill color. Please email the output to pascalpp+fillcolor@gmail.com.
+If the build succeeds, the app will print the current OS version, the current desktop scaling option (a number from 0 to 3), the image clipping setting, and the current fill color. Please email the output to pascal+fillcolor@pascal.com.
 
 Keep scrolling if you're curious to know more.
 
@@ -81,8 +81,8 @@ So I'm trying to set the desktop image and color programmatically, using the `se
 Some sample code:
 
 ```swift
-import Foundation
 import AppKit
+import Foundation
 
 let workspace = NSWorkspace.shared
 let screens = NSScreen.screens
